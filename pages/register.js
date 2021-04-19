@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import Router from 'next/router'
 import Swal from 'sweetalert2'
@@ -11,7 +11,16 @@ export default function Register() {
 	const [password1, setPassword1] = useState("")
 	const [password2, setPassword2] = useState("")
 
-	const isActive = useState(true)
+	const [isActive, setIsActive] = useState(true)
+
+	// Run change after every user input
+	useEffect(() => {
+		if((firstName !== '' && lastName !== '' && email !== '' && mobileNo !== '' && password1 !== '' && password2 !== '') && (mobileNo.length === 11)) {
+			setIsActive(true)
+		} else {
+			setIsActive(false)
+		}
+	}, [firstName, lastName, email, mobileNo, password1, password2])
 
 	function registerUser(e) {
 		e.preventDefault()
@@ -98,9 +107,11 @@ export default function Register() {
 				</Form.Group>
 
 				
-				<Button variant="primary" type="submit">Register</Button>					
-				
-				{/*<Button variant="primary" disabled>Register</Button>*/}
+				{ (isActive) ?
+						<Button variant="primary" type="submit">Register</Button>
+					:
+						<Button variant="primary" disabled>Register</Button>
+				}
 				
 			</Form>
 		</>
