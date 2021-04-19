@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import View from '../components/View';
-import LoginForm from '../components/LoginForm'
+import CategoryTable from '../components/CategoryTable';
 
-export default function Home() {
+export default function MonthlyExpenses() {
   return (
-    <View title="Log In">
-      <LoginForm />
+    <View title="Monthly Expenses">
+       
     </View>
   );
 }
