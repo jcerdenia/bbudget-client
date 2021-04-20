@@ -15,7 +15,8 @@ export default function Register() {
 
 	// Run change after every user input
 	useEffect(() => {
-		if((firstName !== '' && lastName !== '' && email !== '' && mobileNo !== '' && password1 !== '' && password2 !== '') && (mobileNo.length === 11)) {
+		if((firstName !== '' && lastName !== '' && email !== '' && mobileNo !== '' 
+		&& password1 !== '' && password2 !== '') && (mobileNo.length === 11)) {
 			setIsActive(true)
 		} else {
 			setIsActive(false)
