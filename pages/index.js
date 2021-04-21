@@ -5,14 +5,32 @@ import styles from '../styles/Home.module.css'
 import View from '../components/View'; 
 import Swal from 'sweetalert2'
 import Router from 'next/router';
+import UserContext from '../contexts/UserContext'
+
+const LOCAL_BASE_URL = "http://localhost/4000"
+const HOSTED_BASE_URL = "https://aqueous-atoll-99638.herokuapp.com"
 
 export default function Home() {
  const [email, setEmail] = useState("")
  const [password, setPassword] = useState("")
+ const { user, setUser } = useContext(UserContext)
+
+const retrieveUserDetails = () => {
+	// User needs to be verified, i.e., has access token
+	const options = {
+		headers: { Authorization: `Bearer ${accessToken}` }
+	}
+	fetch('http://localhost:4000/api/users/details', options)
+	.then((response) => response.json())
+	.then((data) => { 
+		setUser({ id: data._id, isAdmin: data.isAdmin })
+		Router.push('/user/records')
+	})
+}
 
  function login(e) {
  	e.preventDefault()
-	fetch('https://aqueous-atoll-99638.herokuapp.com/api/users/login', {
+	fetch(LOCAL_BASE_URL + "/api/users/login", {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
