@@ -8,7 +8,8 @@
 }
 
 .formContainer {
-  max-width: 550px;
+  max-width: 650px;
+  margin: auto;
 }
 
 .main {

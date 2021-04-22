@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import Router from 'next/router'
 import Swal from 'sweetalert2'
+import styles from '../styles/Register.module.css'
 
 export default function Register() {
 	const [firstName, setFirstName] = useState("")
@@ -75,7 +76,7 @@ export default function Register() {
 	}
 
    return (
-		<div>
+		<div className={styles.formContainer}>
 			<h1 className="mt-5 pt-5 text-center">New User</h1>
 			<Form onSubmit={(e) => registerUser(e)} className="mb-3">
 				<Form.Group controlId="userFirstName">
@@ -110,9 +111,9 @@ export default function Register() {
 
 				
 				{ (isActive) ?
-						<Button variant="primary" type="submit">Register</Button>
+						<Button variant="primary" type="submit" className="btn-block mb-3">Register</Button>
 					:
-						<Button variant="primary" disabled>Register</Button>
+						<Button variant="primary" className="btn-block mb-3" disabled>Register</Button>
 				}
 				
 			</Form>
