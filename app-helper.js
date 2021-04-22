@@ -1,3 +1,3 @@
 module.exports = {
-	getAccessToken: () => localStorage.getItem('token')
+	getAccessToken: () => localStorage.getItem('token'),
 }

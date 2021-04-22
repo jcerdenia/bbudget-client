@@ -1,6 +1,7 @@
-import { Fragment } from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
-import Link from 'next/link';
+
+import { Navbar, Nav, Button } from 'react-bootstrap'
+import { Fragment } from 'react'
+import Link from 'next/link'
 
 const mainNavGroup = [
 	'Categories', 
@@ -13,30 +14,32 @@ const mainNavGroup = [
 	const slug = item.trim().toLowerCase().replace(' ', '-');
 	return (
 		<Nav.Item>
-			<Nav.Link href={`/${slug}`}>
-				{item}
-			</Nav.Link>
+			<Nav.Link href={`/${slug}`}>{item}</Nav.Link>
 		</Nav.Item>
 	);
 });
 
 export default function AppNavBar() {
+
 	return (
 		<Fragment>
-			<Navbar bg="dark" expand="lg" variant="dark" sticky="top">
+			<Navbar id="navbar" expand="lg" variant="dark" sticky="top">
 				<Link href="/">
-					<a className="navbar-brand">Budget Tracker</a>
+					<a className="navbar-brand">bbudget</a>
 				</Link>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse className="basic-navbar-nav">
 					
 					<Nav className="mr-auto">
-						{mainNavGroup}
+						{/* mainNavGroup */}
 					</Nav>
 
 					<Nav className="justify-content-end">
 						<Nav.Item>
-							<Nav.Link href="/logout">Log Out</Nav.Link>
+							<Button href="/register">Sign Up</Button>
+						</Nav.Item>
+						<Nav.Item>
+							<Nav.Link href="/logout">Log In</Nav.Link>
 						</Nav.Item>
 					</Nav>
 				</Navbar.Collapse>

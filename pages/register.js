@@ -7,7 +7,7 @@ export default function Register() {
 	const [firstName, setFirstName] = useState("")
 	const [lastName, setLastName] = useState("")
 	const [email, setEmail] = useState("")
-	const [mobileNo, setMobileNo] = useState(0)
+	const [mobileNo, setMobileNo] = useState("")
 	const [password1, setPassword1] = useState("")
 	const [password2, setPassword2] = useState("")
 
@@ -25,6 +25,7 @@ export default function Register() {
 
 	function registerUser(e) {
 		e.preventDefault()
+		
 		fetch('https://aqueous-atoll-99638.herokuapp.com/api/users/email-exists', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -74,37 +75,37 @@ export default function Register() {
 	}
 
    return (
-		<>
-			<h1 className="mt-5 pt-5 text-center">Register</h1>
+		<div>
+			<h1 className="mt-5 pt-5 text-center">New User</h1>
 			<Form onSubmit={(e) => registerUser(e)} className="mb-3">
 				<Form.Group controlId="userFirstName">
-					<Form.Label>First Name</Form.Label>
-					<Form.Control type="text" placeholder="Enter First Name" value={firstName} onChange={e => setFirstName(e.target.value)} required/>
+					<Form.Label>First Name:</Form.Label>
+					<Form.Control type="text" placeholder="Juan" value={firstName} onChange={e => setFirstName(e.target.value)} required/>
 				</Form.Group>
 
 				<Form.Group controlId="userLastName">
-					<Form.Label>Last Name</Form.Label>
-					<Form.Control type="text" placeholder="Enter Last Name" value={lastName} onChange={e => setLastName(e.target.value)} required/>
+					<Form.Label>Last Name:</Form.Label>
+					<Form.Control type="text" placeholder="dela Cruz" value={lastName} onChange={e => setLastName(e.target.value)} required/>
 				</Form.Group>
 
 				<Form.Group controlId="userEmail">
-					<Form.Label>Email</Form.Label>
-					<Form.Control type="email" placeholder="Enter Email" value={email} onChange={e => setEmail(e.target.value)} required/>
+					<Form.Label>Email:</Form.Label>
+					<Form.Control type="email" placeholder="name@email.com" value={email} onChange={e => setEmail(e.target.value)} required/>
 				</Form.Group>
 
 				<Form.Group controlId="mobileNo">
-					<Form.Label>Mobile Number</Form.Label>
-					<Form.Control type="number" placeholder="Enter Mobile No." value={mobileNo} onChange={e => setMobileNo(e.target.value)} required/>
+					<Form.Label>Mobile Number:</Form.Label>
+					<Form.Control type="number" placeholder="Number must have 11 digits." value={mobileNo} onChange={e => setMobileNo(e.target.value)} required/>
 				</Form.Group>
 
 				<Form.Group controlId="password1">
-					<Form.Label>Password</Form.Label>
-					<Form.Control type="password" placeholder="Enter Password" value={password1} onChange={e => setPassword1(e.target.value)} required/>
+					<Form.Label>Password:</Form.Label>
+					<Form.Control type="password"  value={password1} onChange={e => setPassword1(e.target.value)} required/>
 				</Form.Group>
 
 				<Form.Group controlId="password2">
-					<Form.Label>Confirm Password</Form.Label>
-					<Form.Control type="password" placeholder="Confirm Password" value={password2} onChange={e => setPassword2(e.target.value)} required/>
+					<Form.Label>Confirm Password:</Form.Label>
+					<Form.Control type="password"  value={password2} onChange={e => setPassword2(e.target.value)} required/>
 				</Form.Group>
 
 				
@@ -115,6 +116,6 @@ export default function Register() {
 				}
 				
 			</Form>
-		</>
+		</div>
 		) 
 }
