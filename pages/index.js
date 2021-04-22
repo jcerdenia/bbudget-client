@@ -28,8 +28,10 @@ export default function Home() {
 		.then((response) => response.json())
 		.then((data) => { 
 			// Should receive user data
+			console.log("Received data" + data)
 			setUser({ email: data.email })
-			Router.push('/user/records')
+			console.log(user)
+			//Router.push('/user/records')
 		})
 	}
 

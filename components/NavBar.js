@@ -27,9 +27,9 @@ export default function AppNavBar() {
 	let RightNavOptions;
 	let LeftNavOptions;
 
-	console.log(user.email)
+	console.log(user)
 
-	if (user.email !== null) {
+	if (user.email === null) {
 		RightNavOptions = (
 			<Fragment>
 				<Link href="/">
@@ -54,7 +54,7 @@ export default function AppNavBar() {
 					
 					<Nav className="mr-auto" onClick={() => setIsExpanded(!isExpanded)} >
 						{/* mainNavGroup */}
-						{RightNavOptions}
+						{LeftNavOptions}
 					</Nav>
 
 					<Nav className="justify-content-end" onClick={() => setIsExpanded(!isExpanded)} >
@@ -66,7 +66,7 @@ export default function AppNavBar() {
 							<Nav.Link href="/logout">Log In</Nav.Link>
 						</Nav.Item>
 					*/}
-						{LeftNavOptions}
+						{RightNavOptions}
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>
