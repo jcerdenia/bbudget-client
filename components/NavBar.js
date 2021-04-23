@@ -29,10 +29,10 @@ export default function AppNavBar() {
 
 	console.log(user)
 
-	if (user.email === null) {
+	if (user.email !== null) {
 		RightNavOptions = (
 			<Fragment>
-				<Link href="/">
+				<Link href="/logout">
 					<a className="nav-link">Log Out</a>
 				</Link>
 			</Fragment>
@@ -47,7 +47,7 @@ export default function AppNavBar() {
 		<Fragment>
 			<Navbar expanded={isExpanded} id="navbar" expand="lg" variant="dark" sticky="top">
 				<Link href="/">
-					<a className="navbar-brand">bbudget</a>
+					<a className="navbar-brand"><strong>bbudget</strong></a>
 				</Link>
 				<Navbar.Toggle onClick={() => setIsExpanded(!isExpanded)} aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse className="basic-navbar-nav">

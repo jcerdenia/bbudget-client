@@ -14,7 +14,7 @@ export default function Logout() {
 	return (
 		<View title="Log Out">
 			<h5 className="text-center">Logging out...</h5>
-			<h6 className="text-center">You will be redirected back to</h6>
+			<h6 className="text-center">You will be redirected back to the log in screen.</h6>
 		</View>
 	)
 }

@@ -7,8 +7,8 @@
   align-items: center;
 }
 
-.formContainer {
-  max-width: 650px;
+.loginFormContainer {
+  max-width: 500px;
   margin: auto;
 }
 
