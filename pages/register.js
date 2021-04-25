@@ -77,7 +77,7 @@ export default function Register() {
 
    return (
 		<div className={styles.formContainer}>
-			<h1 className="mt-5 pt-5 text-center">New User</h1>
+			<h1 className="mt-3 pt-3 text-center"><strong>New User</strong></h1>
 			<Form onSubmit={(e) => registerUser(e)} className="mb-3">
 				<Form.Group controlId="userFirstName">
 					<Form.Label>First Name:</Form.Label>
@@ -111,9 +111,9 @@ export default function Register() {
 
 				
 				{ (isActive) ?
-						<Button variant="primary" type="submit" className="btn-block mb-3">Register</Button>
+						<Button variant="primary" type="submit" className="btn-block mb-5">Register</Button>
 					:
-						<Button variant="primary" className="btn-block mb-3" disabled>Register</Button>
+						<Button variant="primary" className="btn-block mb-5" disabled>Register</Button>
 				}
 				
 			</Form>

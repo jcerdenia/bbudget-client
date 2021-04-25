@@ -15,13 +15,13 @@ function MyApp({ Component, pageProps }) {
             const options = { headers: {
                 Authorization: `Bearer ${Helper.getAccessToken()}`
             }}
-  		// Send access token to API endpoint
+  		    // Send access token to API endpoint
             fetch('http://localhost:4000/api/users/details', options)
             .then((response) => response.json())
             .then((userData) => {
-  	        // Should receive user data
-                if (typeof userData.email !== 'undefined') {
-                    setUser({ email: userData })
+  	            // Should receive user data
+                if (userData.email !== undefined) {
+                    setUser({ email: userData.email })
                 } else {
                     setUser({ email: null })
                 }
@@ -37,25 +37,25 @@ function MyApp({ Component, pageProps }) {
 
     return (
         <UserProvider value={{user, setUser, unsetUser}}>
-            {/*
+           {/* 
             <Head>
                 <link rel="preconnect" href="https://fonts.gstatic.com"/>
                 <link
-                    href="https://fonts.googleapis.com/css2?family=Cabin"
+                    href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
                     rel="stylesheet"
-                    key="google-font-cabin"
+                    key="google-font-source-sans-pro"
                 />
-            </Head>
-        */}
+           </Head>*/}
+        
 
             <AppNavBar />
             <Container>
                 <Component {...pageProps} />
             </Container>
-
-            {/*<style global jsx>{`
+           {/*
+            <style global jsx>{`
                 body {
-                    font-family: 'Cabin', monospace, sans-serif;
+                    font-family: 'Source Sans Pro', sans-serif;
                 }
                 `}
             </style>*/}

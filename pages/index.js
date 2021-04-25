@@ -38,12 +38,13 @@ export default function Home() {
 				retrieveUserDetails(data.accessToken)
 				Swal.fire({
 					icon: 'success',
-					title: 'Succesfully logged in.'
+					title: 'Successfully logged in.',
 				})
 			} else {
 				Swal.fire({
 					icon: 'error',
-					title: 'Incorrect email and/or password.'
+					title: 'Failed to log in.',
+					text: 'Incorrect user name and/or password.'
 				})
 			}
 		})
@@ -64,11 +65,11 @@ export default function Home() {
 	return (
 		<View title={'Log in'}>
 			<Container style={{'margin-bottom': '50px'}}>
-				<h1 className={styles.title}>A better way to track your budget.</h1>
+				<h1 className={styles.title}><strong>A better way to track your budget.</strong></h1>
 			</Container>
 
 			<div className={styles.loginFormContainer}>
-				<h5>Log in with your account information.</h5>
+				<h5 className="text-muted">Log in with your account information.</h5>
 				<Form onSubmit={(e) => login(e)}>
 					<Form.Group controlId="email">
 						<Form.Label>Email:</Form.Label>
@@ -80,7 +81,7 @@ export default function Home() {
 					</Form.Group>
 					<Button type="submit" variant="primary" className="btn-block mb-3">Log In</Button>
 				</Form>
-				<Link href="/register">Don't have an account? Sign up now.</Link>
+				<p>Not yet registered? <Link href="/register">Sign up now.</Link></p>
 			</div>
 		</View>
 	)
