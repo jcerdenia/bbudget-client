@@ -13,7 +13,6 @@ export default function NewRecordModal(props) {
         if (categories === null) {
             const token = Helper.getAccessToken()
             const options = { headers: { Authorization: `Bearer ${token}` }}
-
             fetch('http://localhost:4000/api/users/get-categories', options)
             .then((response) => response.json())
             .then((data) => { 
@@ -52,12 +51,13 @@ export default function NewRecordModal(props) {
             New Record
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+       
           
-        <Form>
+        <Form onSubmit={() => submitRecord()}>
+         <Modal.Body>
             <Form.Group controlId="typeName">
                 <Form.Label>Category Type:</Form.Label>
-                <Form.Control as="select" value={typeName} onChange={ (e) => setTypeName(e.target.value) } required>
+                <Form.Control as="select" value={typeName} onChange={(e) => setTypeName(e.target.value)} required>
                     <option value selected disabled>Select Category</option>
                     <option value="Income">Income</option>
                     <option value="Expense">Expense</option>
@@ -65,12 +65,12 @@ export default function NewRecordModal(props) {
             </Form.Group>
             <Form.Group controlId="categoryName">
                 <Form.Label>Category Name:</Form.Label>
-                <Form.Control as="select" value={ categoryName } onChange={ (e) => setCategoryName(e.target.value) } required>
+                <Form.Control as="select" value={categoryName} onChange={(e) => setCategoryName(e.target.value)} required>
                     <option value selected disabled>Select Category Name</option>
                     {
                         categories?.map((category) => {
                             return (
-                                <option key={ category._id } value={ category.name }>{ category.name }</option>
+                                <option key={category._id} value={category.name}>{category.name}</option>
                             )
                         })
                     }
@@ -78,23 +78,19 @@ export default function NewRecordModal(props) {
             </Form.Group>
             <Form.Group controlId="amount">
                 <Form.Label>Amount:</Form.Label>
-                <Form.Control type="number" placeholder="Enter amount" value={ amount } onChange={ (e) => setAmount(parseFloat(e.target.value)) } required/>
+                <Form.Control type="number" placeholder="Enter amount" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} required/>
             </Form.Group>
             <Form.Group controlId="description">
                 <Form.Label>Description:</Form.Label>
-                <Form.Control type="text" placeholder="Enter description" value={ description } onChange={ (e) => setDescription(e.target.value) } required/>
+                <Form.Control type="text" placeholder="Enter description" value={description} onChange={(e) => setDescription(e.target.value)} required/>
             </Form.Group>
+            </Modal.Body>
+
+            <Modal.Footer>
+                <Button type="submit" onClick={props.onHide}>Submit</Button>
+            </Modal.Footer>
         </Form>
 
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" 
-            type="submit" 
-            onClick={() => {
-                submitRecord()
-                props.onHide
-            }}>Submit</Button>
-        </Modal.Footer>
       </Modal>
     );
 }

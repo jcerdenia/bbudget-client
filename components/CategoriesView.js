@@ -32,7 +32,7 @@ export default function CategoriesView() {
 
     useEffect(() => {
         if (categories === null) refreshCategories()
-    }, [categories, setCategories])
+    }, [categories])
 
     function refreshCategories() {
         const token = Helper.getAccessToken()

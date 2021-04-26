@@ -1,20 +1,19 @@
 
-import { Navbar, Nav, Button } from 'react-bootstrap'
+import { Navbar, Nav, Button, Dropdown, NavItem, NavLink } from 'react-bootstrap'
 import { Fragment, useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import UserContext from '../contexts/UserContext'
 
 
-const mainNavGroup = [ 
-	'Records', 
+const chartsNavGroup = [ 
 	'Monthly Expenses', 
 	'Monthly Income', 
 	'Trend', 
-	'Breakdown'
+	'Category Breakdown'
 ].map((item) => {	
 	const slug = item.trim().toLowerCase().replace(' ', '-');
 	return (
-		<Link href={`/user/${slug}`}>
+		<Link href={`/user/charts/${slug}`}>
 			<a className="nav-link">{item}</a>
 		</Link>
 	);
@@ -27,8 +26,6 @@ export default function AppNavBar() {
 	let RightNavOptions;
 	let LeftNavOptions;
 
-	console.log(user)
-
 	if (user.email !== null) {
 		RightNavOptions = (
 			<Nav className="justify-content-end" onClick={() => setIsExpanded(!isExpanded)}>
@@ -40,7 +37,15 @@ export default function AppNavBar() {
 				</Link>
 			</Nav>
 		)
-		LeftNavOptions = mainNavGroup
+		LeftNavOptions = (
+			<>
+			<Link href={`/user/records`}>
+				<a className="nav-link">Records</a>
+			</Link>
+
+			{chartsNavGroup}
+			</>
+		)
 	} else {
 		RightNavOptions = 
 			(

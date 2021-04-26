@@ -64,7 +64,7 @@ export default function Home() {
 
 	return (
 		<View title={'Log in'}>
-			<Container style={{'margin-bottom': '50px'}}>
+			<Container style={{marginBottom: '50px'}}>
 				<h1 className={styles.title}><strong>A better way to track your budget.</strong></h1>
 			</Container>
 

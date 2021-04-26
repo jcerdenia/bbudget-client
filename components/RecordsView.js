@@ -26,7 +26,7 @@ export default function RecordsView() {
                         </Col>
                         <Col md={6} className="text-right">
                             <h6 className={textColor}>{amountSymbol + ' ' + record.amount.toLocaleString()}</h6>
-                            <span className={textColor}>{record.balanceAfterTransaction.toLocaleString()}</span>
+                            <span>{record.balanceAfterTransaction.toLocaleString()}</span>
                         </Col>
                     </Row>
                 </Card.Body>
@@ -38,7 +38,7 @@ export default function RecordsView() {
         if (records === null) {
             refreshRecords()
         }
-    }, [records, setRecords])
+    }, [records])
 
     function refreshRecords() {
         const token = Helper.getAccessToken()
