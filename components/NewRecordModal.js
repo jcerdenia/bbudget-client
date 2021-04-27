@@ -10,7 +10,7 @@ export default function NewRecordModal(props) {
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:4000/api/users/get-categories', {
+        fetch(`${Helper.apiBaseUrl}/api/users/get-categories`, {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export default function NewRecordModal(props) {
     }, [typeName])
 
     function submitRecord() {
-        fetch('http://localhost:4000/api/users/add-record', {
+        fetch(`${Helper.apiBaseUrl}/api/users/add-record`, {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json', 
