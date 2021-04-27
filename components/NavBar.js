@@ -3,7 +3,7 @@ import { Navbar, Nav, Button, Dropdown, NavItem, NavLink } from 'react-bootstrap
 import { Fragment, useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import UserContext from '../contexts/UserContext'
-
+import Helper from '../app-helper'
 
 const chartsNavGroup = [ 
 	'Monthly Expenses', 

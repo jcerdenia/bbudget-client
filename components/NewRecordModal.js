@@ -7,19 +7,24 @@ export default function NewRecordModal(props) {
     const [typeName, setTypeName] = useState(undefined)
     const [amount, setAmount] = useState(0)
     const [description, setDescription] = useState('')
-    const [categories, setCategories] = useState(null)
+    const [categories, setCategories] = useState([])
 
     useEffect(() => {
-        if (categories === null) {
-            const token = Helper.getAccessToken()
-            const options = { headers: { Authorization: `Bearer ${token}` }}
-            fetch('http://localhost:4000/api/users/get-categories', options)
-            .then((response) => response.json())
-            .then((data) => { 
-                if (data) setCategories(data) 
+        fetch('http://localhost:4000/api/users/get-categories', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Helper.getAccessToken()}`
+            },
+            body: JSON.stringify({
+                type: typeName
             })
-        }
-    }, [categories, setCategories])
+        })
+        .then((response) => response.json())
+        .then((data) => { 
+            if (data) setCategories(data) 
+        })
+    }, [typeName])
 
     function submitRecord() {
         fetch('http://localhost:4000/api/users/add-record', {

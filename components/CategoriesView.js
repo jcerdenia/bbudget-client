@@ -1,4 +1,4 @@
-import { Col, Row, Card, InputGroup, FormControl, Form, Button } from 'react-bootstrap'
+import { Col, Row, Card, InputGroup, FormControl, Form, Button, Table } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import Helper from '../app-helper'
 
@@ -10,11 +10,12 @@ export default function CategoriesView() {
     const categoryRows = categories?.map((category) => {
         return (
             <>
-            {/* <tr>
-                <th>{category.name}</th>
-                <th>{category.type}</th>
-                <th key={category._id}><a className="btn btn-danger" onClick={() => deleteCategory(category._id)}>-</a></th>
-            </tr> */}
+            <tr>
+                <td>{category.name}</td>
+                <td>{category.type}</td>
+            </tr>
+
+            {/*
             <Card className="mb-1" key={category._id}>
                 <Card.Body><Row>
                     <Col xs={8}>
@@ -26,6 +27,7 @@ export default function CategoriesView() {
                     </Col>
                 </Row></Card.Body>
             </Card>
+            */}
             </>
         )
     })
@@ -36,9 +38,9 @@ export default function CategoriesView() {
 
     function refreshCategories() {
         const token = Helper.getAccessToken()
-        const options = { headers: { Authorization: `Bearer ${token}` }}
+        const options = { method: 'POST', headers: { Authorization: `Bearer ${token}` }}
 
-        fetch('http://localhost:4000/api/users/get-categories', options)
+        fetch(`${Helper.apiBaseUrl}/api/users/get-categories`, options)
         .then((response) => response.json())
         .then((data) => { 
             if (data) setCategories(data) 
@@ -48,7 +50,7 @@ export default function CategoriesView() {
     function addCategory() {
         if (newCategory !== '') {
             const token = Helper.getAccessToken()
-            fetch('http://localhost:4000/api/users/add-category', {
+            fetch(`${Helper.apiBaseUrl}/api/users/add-category`, {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json', 
@@ -66,7 +68,7 @@ export default function CategoriesView() {
 
     function deleteCategory(categoryId) {
         const token = Helper.getAccessToken()
-        fetch('http://localhost:4000/api/users/delete-category', {
+        fetch(`${Helper.apiBaseUrl}/api/users/delete-category`, {
 			method: 'POST',
 			headers: { 
                 'Content-Type': 'application/json', 
@@ -95,21 +97,19 @@ export default function CategoriesView() {
                     }
                 </InputGroup.Append>
             </InputGroup>
-            {/*
+            
             <Table style={{'max-width': '100vw'}}striped bordered hover>
                 <thead>
                     <tr>
                         <th>Category</th>
                         <th>Type</th>
-                        <th></th>
                     </tr>
                 </thead>
 
                 <tbody>
                     {categoryRows}
                 </tbody>
-            </Table> */}
-            {categoryRows}
+            </Table>
         </>
     )
 }

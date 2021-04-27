@@ -7,8 +7,8 @@ import styles from '../styles/Home.module.css'
 import UserContext from '../contexts/UserContext'
 import View from '../components/View'
 import Swal from 'sweetalert2'
+import Helper from '../app-helper'
 
-const BASE_URL = "http://localhost:4000"
 //const BASE_URL = "https://aqueous-atoll-99638.herokuapp.com"
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
 	function login(e) {
 	 	e.preventDefault()
 	 	// Send user email and password to endpoint
-		fetch(`${BASE_URL}/api/users/login`, {
+		fetch(`${Helper.apiBaseUrl}/api/users/login`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
@@ -53,7 +53,7 @@ export default function Home() {
 	function retrieveUserDetails(accessToken) {
 		const options = { headers: { Authorization: `Bearer ${accessToken}` }}
 		// Send access token to API endpoint
-		fetch(`${BASE_URL}/api/users/details`, options)
+		fetch(`${Helper.apiBaseUrl}/api/users/details`, options)
 		.then((response) => response.json())
 		.then((data) => { 
 			// Should receive user data

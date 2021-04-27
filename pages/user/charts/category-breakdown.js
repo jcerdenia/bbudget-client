@@ -3,10 +3,11 @@ import { InputGroup, Form, Col } from 'react-bootstrap'
 import { Pie } from 'react-chartjs-2'
 import View from '../../../components/View'
 import Helper from '../../../app-helper.js'
+import moment from 'moment'
 
 export default function CategoryBreakdown() {
-    const [fromDate, setFromDate] = useState('')
-    const [toDate, setToDate] = useState('')
+    const [fromDate, setFromDate] = useState(moment().subtract(30, 'days').format('l'))
+    const [toDate, setToDate] = useState(moment().format('l'))
     const [labelsArr, setLabelsArr] = useState([])
     const [dataArr, setDataArr] = useState([])
     const [bgColors,setBgColors] = useState([])

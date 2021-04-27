@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
                 Authorization: `Bearer ${Helper.getAccessToken()}`
             }}
   		    // Send access token to API endpoint
-            fetch('http://localhost:4000/api/users/details', options)
+            fetch(`${Helper.apiBaseUrl}/api/users/details`, options)
             .then((response) => response.json())
             .then((userData) => {
   	            // Should receive user data

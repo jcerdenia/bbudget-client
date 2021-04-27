@@ -40,11 +40,30 @@ export default function RecordsView() {
         }
     }, [records])
 
+    useEffect(() => {
+        if (searchKeyword.length > 0) {
+            setRecords(records?.filter((record) => {
+                return record.description.toLowerCase().includes(searchKeyword.toLowerCase())
+            }))
+        } else {
+            refreshRecords()
+        }
+    }, [searchKeyword])
+
+    useEffect(() => {
+        if (searchType !== 'All') {
+            setRecords(records?.filter((record) => {
+                return record.categoryType.toLowerCase() === searchType.toLowerCase()
+            }))
+        } else {
+            refreshRecords()
+        }
+    }, [searchType])
+
     function refreshRecords() {
         const token = Helper.getAccessToken()
         const options = { headers: { Authorization: `Bearer ${token}` }}
-
-        fetch('http://localhost:4000/api/users/get-records', options)
+        fetch(`${Helper.apiBaseUrl}/api/users/get-records`, options)
         .then((response) => response.json())
         .then((data) => { 
             if (data) setRecords(data) 
