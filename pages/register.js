@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 import Router from 'next/router'
 import Swal from 'sweetalert2'
 import styles from '../styles/Register.module.css'
+import Helper from '../app-helper'
 
 export default function Register() {
 	const [firstName, setFirstName] = useState("")
@@ -27,7 +28,7 @@ export default function Register() {
 	function registerUser(e) {
 		e.preventDefault()
 		
-		fetch('https://aqueous-atoll-99638.herokuapp.com/api/users/email-exists', {
+		fetch(`${Helper.apiBaseUrl}/api/users/email-exists`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ email: email })
@@ -36,7 +37,7 @@ export default function Register() {
 		.then((data) => {
 			if (data === false) {
 				// Allow registration
-				fetch('https://aqueous-atoll-99638.herokuapp.com/api/users/register', {
+				fetch(`${Helper.apiBaseUrl}/api/users/register`, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({

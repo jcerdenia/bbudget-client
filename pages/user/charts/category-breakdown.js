@@ -14,7 +14,7 @@ export default function CategoryBreakdown() {
 
     useEffect(() => {
         const token = Helper.getAccessToken()
-        fetch('http://localhost:4000/api/users/get-records-breakdown-by-range', {
+        fetch(`${Helper.apiBaseUrl}/api/users/get-records-breakdown-by-range`, {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
