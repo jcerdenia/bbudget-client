@@ -9,8 +9,6 @@ import View from '../components/View'
 import Swal from 'sweetalert2'
 import Helper from '../app-helper'
 
-//const BASE_URL = "https://aqueous-atoll-99638.herokuapp.com"
-
 export default function Home() {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
