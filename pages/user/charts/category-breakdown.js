@@ -6,19 +6,18 @@ import Helper from '../../../app-helper.js'
 import moment from 'moment'
 
 export default function CategoryBreakdown() {
-    const [fromDate, setFromDate] = useState(moment().subtract(30, 'days').format('l'))
-    const [toDate, setToDate] = useState(moment().format('l'))
+    const [fromDate, setFromDate] = useState(moment().subtract(1, 'months').format('YYYY-MM-DD'))
+    const [toDate, setToDate] = useState(moment().format('YYYY-MM-DD'))
     const [labelsArr, setLabelsArr] = useState([])
     const [dataArr, setDataArr] = useState([])
     const [bgColors,setBgColors] = useState([])
 
     useEffect(() => {
-        const token = Helper.getAccessToken()
         fetch(`${Helper.apiBaseUrl}/api/users/get-records-breakdown-by-range`, {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${Helper.getAccessToken()}`
             },
             body: JSON.stringify({
                 fromDate: fromDate,
