@@ -1,6 +1,7 @@
 import { Modal, Button, Row, Col, Card, Form } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import Helper from '../app-helper'
+import Swal from 'sweetalert2'
 
 export default function NewRecordModal(props) {
     const [categoryName, setCategoryName] = useState(undefined)
@@ -30,7 +31,7 @@ export default function NewRecordModal(props) {
         setIsActive(isFilledOut)
     }, [categoryName, typeName, amount, description])
 
-    function submitRecord() {
+    function submitRecord(props) {
         fetch(`${Helper.apiBaseUrl}/api/users/add-record`, {
             method: 'POST',
             headers: { 
@@ -45,7 +46,21 @@ export default function NewRecordModal(props) {
             })
         })
         .then((response) => response.json())
-        .then((data) => props.onHide)
+        .then((data) => {
+            if (data) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Record added.",
+                })
+                props.onHide()
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Failed to add record.",
+                    text: "Please try again."
+                })
+            }
+        })
     }
 
     return (
@@ -62,7 +77,7 @@ export default function NewRecordModal(props) {
         </Modal.Header>
        
           
-        <Form onSubmit={() => submitRecord()}>
+        <Form>
          <Modal.Body>
             <Form.Group controlId="typeName">
                 <Form.Label>Category Type:</Form.Label>
@@ -97,7 +112,7 @@ export default function NewRecordModal(props) {
 
             <Modal.Footer>
                 { (isActive) 
-                    ? <Button type="submit" onClick={props.onHide}>Submit</Button>
+                    ? <Button onClick={() => submitRecord(props)}>Submit</Button>
                     : <Button disabled>Submit</Button>
                 }
             </Modal.Footer>
