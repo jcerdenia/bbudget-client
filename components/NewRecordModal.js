@@ -8,6 +8,7 @@ export default function NewRecordModal(props) {
     const [amount, setAmount] = useState(0)
     const [description, setDescription] = useState('')
     const [categories, setCategories] = useState([])
+    const [isActive, setIsActive] = useState(true)
 
     useEffect(() => {
         fetch(`${Helper.apiBaseUrl}/api/users/get-categories`, {
@@ -25,6 +26,11 @@ export default function NewRecordModal(props) {
             if (data) setCategories(data) 
         })
     }, [typeName])
+
+    useEffect(() => {
+        const isFilledOut = categoryName !== undefined && typeName !== undefined && amount > 0 && description !== ''
+        setIsActive(isFilledOut)
+    }, [categoryName, typeName, amount, description])
 
     function submitRecord() {
         fetch(`${Helper.apiBaseUrl}/api/users/add-record`, {
@@ -92,7 +98,10 @@ export default function NewRecordModal(props) {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button type="submit" onClick={props.onHide}>Submit</Button>
+                { (isActive) 
+                    ? <Button type="submit" onClick={props.onHide}>Submit</Button>
+                    : <Button disabled>Submit</Button>
+                }
             </Modal.Footer>
         </Form>
 
