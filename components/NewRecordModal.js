@@ -22,7 +22,7 @@ export default function NewRecordModal(props) {
         })
         .then((response) => response.json())
         .then((data) => { 
-            if (data) setCategories(data) 
+            setCategories(data) 
         })
     }, [typeName])
 
@@ -52,7 +52,12 @@ export default function NewRecordModal(props) {
                     icon: "success",
                     title: "Record added.",
                 })
-                props.onHide()
+
+                setCategoryName(undefined)
+                setTypeName(undefined)
+                setAmount(0)
+                setDescription('')
+                props.onHide()      
             } else {
                 Swal.fire({
                     icon: "error",
@@ -81,7 +86,12 @@ export default function NewRecordModal(props) {
          <Modal.Body>
             <Form.Group controlId="typeName">
                 <Form.Label>Category Type:</Form.Label>
-                <Form.Control as="select" value={typeName} onChange={(e) => setTypeName(e.target.value)} required>
+                <Form.Control as="select" value={typeName} 
+                onChange={(e) => {
+                    setTypeName(e.target.value)
+
+                }} 
+                required>
                     <option value selected disabled>Select Category</option>
                     <option value="Income">Income</option>
                     <option value="Expense">Expense</option>
