@@ -17,9 +17,7 @@ export default function NewRecordModal(props) {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${Helper.getAccessToken()}`
             },
-            body: JSON.stringify({
-                type: typeName
-            })
+            body: JSON.stringify({ type: typeName })
         })
         .then((response) => response.json())
         .then((data) => { 
